@@ -15,6 +15,13 @@ function createUser($fname, $username, $password, $email, $userlvl){
   mysqli_close($link);
 }
 
+//reducing here a fucntion I found to be less lines of code
+function randomPassword ($length = 10) {
+    $characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-=+;:,.?";
+    $password = substr( str_shuffle( $characters ),1, $length );
+    return $password;
+}
+
 function sendEmail($email, $username, $password)
 {
 
@@ -22,7 +29,7 @@ function sendEmail($email, $username, $password)
     $subject = "Welcome to the best movies platform";
     $body = "Username: " . $username . "\r\n";
     $body .= "Password: " . $password . "\r\n";
-    $body .= "Login URL: http://localhost/admin/admin_createuser.php"; //would work with any email configured 
+    $body .= "Login URL: http://localhost/admin/admin_createuser.php"; //would work with any email configured
     $headers = 'From: noreply@test.com' . "\r\n";
 
     echo $body;
