@@ -6,10 +6,11 @@ body{
 	font-family: Helvetica, sans-serif;
 	color: white;
 	font-weight: 300;
+  background-color: #33DDEB;
 
 }
 
-#loginCont {
+.loginCont {
   position: absolute;
   left: 0;
   width: 100%;
@@ -45,6 +46,46 @@ form{
 	z-index: 2;
 	}
 
+label {
+
+  margin: 0 auto;
+  text-align: center;
+  color:  #080445;
+  display: block;
+
+}
+
+p{
+  display: block;
+  text-align: center;
+  font-weight: bold;
+  color: #0c0faf;
+}
+
+.select{
+  display: block;
+  margin: 0 auto;
+  margin-left: 690px;
+}
+
+.select select {
+  outline: none;
+  -webkit-appearance: none;
+  display: block;
+  padding: 10px;
+  margin: 0;
+
+  transition: border-color 0.2s;
+  border: 5px solid #0c0faf;
+  border-radius: 5px;
+
+  background: #fff;
+  color: #0c0faf;
+  line-height: normal;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
 input{
 	display: block;
 	appearance: none;

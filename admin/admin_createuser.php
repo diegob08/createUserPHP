@@ -21,11 +21,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="css/main.css">
 <title>Welcome to your admin panel</title>
 </head>
 <body>
-	<h1>Welcome comapny name to your create user page</h1>
-
+	<h1 class="title">Welcome to your create user page</h1>
+	<section id="formSect">
   <?php if(!empty($message)){echo $message;} ?>
   	<form action="admin_createuser.php" method="post">
       <label>First Name</label>
@@ -41,15 +42,17 @@
 
       <label>Email</label>
       <input type="text" name="email" value=""><br></br>
-
       <label>User Level</label>
-      <select name="userlvl">
+			<div class="select">
+				<select name="userlvl">
         <option value="">Please select a user level</option>
         <option value="2">Web Admin</option>
         <option value="1">Web Master</option>
       </select><br><br>
+		</div>
       <input type="submit" name="submit" value="Create user"><br><br>
 
     </form>
+	</section>
 </body>
 </html>
