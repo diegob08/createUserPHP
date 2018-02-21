@@ -1,21 +1,17 @@
 <?php
 
-function createUser($fname, $username, $password, $email, $userlvl){
-  include('connect.php');
-  $userString = "INSERT INTO tbl_user VALUES(NULL, '{$fname}', '{$username}', '{$password}', '{$email}', NULL, '{$userlvl}', 'no')";
-    //echo $userString;
+function createUser($fname, $username, $password, $email)
+{
+    include('connect.php');
+    //Encrypted the password using MD5
+    $userString = "INSERT INTO tbl_user(user_fname,user_name,user_pass,user_email) VALUES('{$fname}', '{$username}', MD5('{$password}'), '{$email}')";
     $userQuery = mysqli_query($link, $userString);
-    if($userQuery){
-      redirect_to("admin_index.php");
-    }else{
-  $message = "There was a problem setting up this user.";
-
-  return $message;
-}
-  mysqli_close($link);
+    mysqli_close($link);
+    return $userQuery;
 }
 
-//reducing here a fucntion I found to be less lines of code
+
+//reducing here a function to be less lines of code
 function randomPassword ($length = 10) {
     $characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-=+;:,.?";
     $password = substr( str_shuffle( $characters ),1, $length );
