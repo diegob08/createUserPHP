@@ -1,31 +1,37 @@
 <?php
 
-function createUser($fname, $username, $password, $email, $userlvl){
-  include('connect.php');
-  $userString = "INSERT INTO tbl_user VALUES(NULL, '{$fname}', '{$username}', '{$password}', '{$email}', NULL, '{$userlvl}', 'no')";
-    //echo $userString;
+function createUser($fname, $username, $password, $email)
+{
+    include('connect.php');
+    //Encrypted the password by MD5
+    $userString = "INSERT INTO tbl_user(user_fname,user_name,user_pass,user_email) VALUES('{$fname}', '{$username}', MD5('{$password}'), '{$email}')";
     $userQuery = mysqli_query($link, $userString);
-    if($userQuery){
-      redirect_to("admin_index.php");
-    }else{
-  $message = "There was a problem setting up this user.";
+    mysqli_close($link);
+    return $userQuery;
+}
 
-  return $message;
+
+//reducing here a function to be less lines of code to generate a password
+//password is generated every time the page is load
+function randomPassword ($length = 10) {
+    $characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-=+;:,.?";
+    $password = substr( str_shuffle( $characters ),1, $length );
+    return $password;
 }
-  mysqli_close($link);
-}
+
 
 function sendEmail($email, $username, $password)
 {
 
     $to = $email;
-    $subject = "Welcome to the best movies platform";
+    $subject = "Welcome register in best movies App";
     $body = "Username: " . $username . "\r\n";
     $body .= "Password: " . $password . "\r\n";
-    $body .= "Login URL: http://localhost/admin/admin_createuser.php"; //would work with any email configured 
+    $body .= "Login URL: http://localhost/admin/admin_createuser.php";
     $headers = 'From: noreply@test.com' . "\r\n";
 
     echo $body;
     mail($to, $subject, $body, $headers);
 }
+
 ?>

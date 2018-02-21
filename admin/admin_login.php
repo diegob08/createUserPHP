@@ -22,7 +22,7 @@ if (isset($_POST['submit'])) {
     <title>Welcome to your admin panel login</title>
 </head>
 <body>
-    <div id="loginCont">
+    <div class="loginCont">
       <?php if ($message !== 'locked') {
           echo $message;
           ?>
